@@ -1,0 +1,31 @@
+int s=1;
+   
+#include <PS2Keyboard.h>
+
+const int DataPin = 0;
+const int IRQpin =  1;
+
+PS2Keyboard keyboard;
+void setup() {
+  keyboard.begin(DataPin, IRQpin, PS2Keymap_US);
+ // keyboard.begin(DataPin, IRQpin, PS2Keymap_German);
+   //keyboard.begin(DataPin, IRQpin, PS2Keymap_French);
+  //keyboard.begin(DataPin, IRQpin, PS2Keymap_Spanish);
+  //keyboard.begin(DataPin, IRQpin, PS2Keymap_Italian);
+  //keyboard.begin(DataPin, IRQpin, PS2Keymap_UK);
+    s=1;
+  pinMode(A3,OUTPUT);
+  pinMode(A2,OUTPUT);
+  }
+void loop(){
+  if(keyboard.available()){
+    analogWrite(A2,0);
+    analogWrite(A3,255);
+  }
+ else if(s==1){
+    analogWrite(A3,0);
+    analogWrite(A2,255);
+    s=2;
+  }
+  
+  }
